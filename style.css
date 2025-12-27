@@ -46,6 +46,60 @@ header.scrolled {
 
 .header-container { display: flex; justify-content: space-between; align-items: center; }
 
+.hero-text > a {
+    text-decoration: none;
+}
+
+/* Texto do endereço */
+.hero-text > a > h2 {
+    color: var(--pink-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover apenas nesse endereço */
+.hero-text > a:hover > h2 {
+    color: var(--green-primary);
+    transform: translateX(4px);
+}
+
+/* Link do endereço apenas na HERO */
+.hero-text > a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 18px 0 28px; /* respiro acima e abaixo */
+}
+
+/* Texto do endereço */
+.hero-text > a > h2 {
+    color: var(--green-primary);
+    font-size: 1.25rem;          /* maior e mais legível */
+    font-weight: 500;
+    line-height: 1.4;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover / toque */
+.hero-text > a:hover > h2 {
+    color: var(--pink-primary);
+    transform: translateX(6px);
+    
+}
+
+/* Ajuste fino para mobile */
+@media (max-width: 768px) {
+    .hero-text > a {
+        margin: 16px 0 24px;
+    }
+
+    .hero-text > a > h2 {
+        font-size: 1.05rem;
+        text-align: center;
+    }
+}
+
+
 .logo {
     font-size: 1.8rem;
     font-weight: 600;
