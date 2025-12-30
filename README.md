@@ -27,8 +27,6 @@ JavaScript
 
 Bootstrap
 
-Tailwind CSS
-
 javascript
 
 Git e GitHub
