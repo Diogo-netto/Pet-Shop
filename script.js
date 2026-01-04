@@ -124,7 +124,7 @@ formCaptura.addEventListener('submit', function(e) {
     console.log("Capturado:", nome, email, pet);
     
     // 2. Monta o link do WhatsApp
-    const mensagem = encodeURIComponent(`Olá! Me chamo ${nome}, vim pelo site e quero agendar para o pet ${pet}!`);
+    const mensagem = encodeURIComponent(`Olá! Me chamo ${nome}, vim pelo site e quero conhecer e agendar um serviço para(a) ${pet}!`);
     const urlWhats = `https://wa.me/5532988449501?text=${mensagem}`;
 
     // 3. ABRE O WHATSAPP EM NOVA ABA
