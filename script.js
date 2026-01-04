@@ -139,39 +139,57 @@ document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary').forEach(bo
 
 
 
+// Captura o formulário pelo ID correto
+const feedbackForm = document.getElementById('form-contato');
 
-/* limpar arquivos formulario */
+if (feedbackForm) {
+    feedbackForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Impede o redirecionamento
+        
+        const btn = feedbackForm.querySelector('button');
+        const originalText = btn.textContent;
+        
+        // Feedback visual
+        btn.textContent = "Enviando...";
+        btn.disabled = true;
 
-// 6. Envio de Feedback via AJAX (Formspree)
-const formFeedback = document.getElementById('form-feedback');
+        const data = new FormData(feedbackForm);
 
-formFeedback.addEventListener('submit', async function(e) {
-    e.preventDefault(); // Impede o redirecionamento para o site do Formspree
-    
-    const btn = formFeedback.querySelector('button');
-    const originalText = btn.textContent;
-    btn.textContent = "Enviando..."; // Feedback visual para o usuário
+        try {
+            const response = await fetch(feedbackForm.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
 
-    const data = new FormData(formFeedback);
+            if (response.ok) {
+                // 1. Limpa o formulário
+                feedbackForm.reset(); 
+                
+                // 2. Mostra o balão de sucesso
+                const toast = document.getElementById('success-toast');
+                toast.style.display = 'block';
+                
+                // 3. Faz o balão sumir sozinho após 4 segundos
+                setTimeout(() => {
+                    toast.style.animation = 'popIn 0.4s reverse forwards'; // Animação saindo
+                    setTimeout(() => {
+                        toast.style.display = 'none';
+                        toast.style.animation = 'popIn 0.4s forwards'; // Reseta a animação para a próxima vez
+                    }, 400);
+                }, 4000);
 
-    try {
-        const response = await fetch(formFeedback.action, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-            alert('Obrigado! Sua mensagem foi enviada com sucesso.'); // Pode trocar por um modal se quiser
-            formFeedback.reset(); // LIMPA O FORMULÁRIO após o envio
-        } else {
-            alert('Ops! Ocorreu um erro ao enviar. Tente novamente.');
+            } else {
+                throw new Error("Erro ao enviar o formulário");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Erro ao enviar o formulário");
+        } finally {
+            btn.textContent = originalText;
+            btn.disabled = false;
         }
-    } catch (error) {
-        alert('Erro de conexão. Verifique sua internet.');
-    } finally {
-        btn.textContent = originalText; // Volta o texto do botão ao normal
-    }
-});
+    });
+}
 
 

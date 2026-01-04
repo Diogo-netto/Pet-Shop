@@ -261,36 +261,47 @@
                 <h2>Pronto para ver seu pet brilhar?</h2>
                 <p>Deixe sua opinião para melhorarmos o atendimento ou deixe seu agradecimento Obrigado.</p>
                 
-                <form class="tech-form" id="form-contato"   action="https://formspree.io/f/maqywjdk" method="POST" autocomplete="off>
-                    <input type="hidden" name="_next" value="https://seu-site.vercel.app/agradecimento.html">
-                    
-                    <div class="input-group">
-                        <input type="text" id="nome" name="nome" required>
-                        <label>Seu Nome</label>
-                    </div>
+               <form class="tech-form" id="form-contato" action="https://formspree.io/f/maqywjdk" method="POST" autocomplete="off">
+    <div class="input-group">
+        <input type="text" id="nome" name="nome" required>
+        <label>Seu Nome</label>
+    </div>
 
-                    <div class="input-group">
-                        <input type="email" id="email" name="nome" required>
-                        <label>Seu melhor E-mail</label>
-                    </div>
+    <div class="input-group">
+        <input type="email" id="email" name="email" required>
+        <label>Seu melhor E-mail</label>
+    </div>
 
-                    <div class="input-group">
-                        <input type="text" id="nome-pet" name="nome" required>
-                        <label>Nome do Pet</label>
-                    </div>
+    <div class="input-group">
+        <input type="text" id="nome-pet" name="pet" required>
+        <label>Nome do Pet</label>
+    </div>
 
-                    <div class="input-group">
-                        <input type="text" id="mensagem" required>
-                        <label>Sua Mensagem / Feedback</label>
-                    </div>
+    <div class="input-group">
+        <input type="text" id="mensagem" name="mensagem" required>
+        <label>Sua Mensagem / Feedback</label>
+    </div>
 
-                    <div style="text-align: left; margin: 15px 0; font-size: 0.9rem; color: #fff; display: flex; align-items: center; gap: 10px;">
-                        <input type="checkbox" id="aceite-marketing"  style="width: auto; margin: 0;">
-                        <label for="aceite-marketing" style="position: static; pointer-events: auto; transform: none; color: #0a0a0a;">Quero receber novidades</label>
-                    </div>
+    <div style="text-align: left; margin: 15px 0; font-size: 0.9rem; color: #fff; display: flex; align-items: center; gap: 10px;">
+        <input type="checkbox" id="aceite-marketing" name="aceite-marketing" style="width: auto; margin: 0;">
+        <label for="aceite-marketing" style="position: static; pointer-events: auto; transform: none; color: #0a0a0a;">Quero receber novidades</label>
+    </div>
 
-                    <button type="submit" class="btn-glow">Enviar Feedback</button>
-                </form>
+    <button type="submit" class="btn-glow" style="width: 100%;">Enviar Feedback</button>
+</form>
+
+<div id="success-toast" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.2); z-index: 3000; text-align: center; width: 280px; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+    <div style="font-size: 50px; margin-bottom: 15px;">🐶</div>
+    <h3 style="color: var(--green-dark); margin-bottom: 10px; font-family: 'Fredoka';">Au-migo, recebido!</h3>
+    <p style="font-size: 0.9rem; color: var(--text-light);">Sua mensagem já chegou para nós. Lambeijos!</p>
+</div>
+
+<style>
+@keyframes popIn {
+    from { opacity: 0; transform: translate(-50%, -40%) scale(0.8); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+</style>
             </div>
         </div>
     </div>
