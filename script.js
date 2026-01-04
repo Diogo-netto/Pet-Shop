@@ -135,3 +135,43 @@ document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary').forEach(bo
 });
 
 
+
+
+
+
+
+/* limpar arquivos formulario */
+
+// 6. Envio de Feedback via AJAX (Formspree)
+const formFeedback = document.getElementById('form-feedback');
+
+formFeedback.addEventListener('submit', async function(e) {
+    e.preventDefault(); // Impede o redirecionamento para o site do Formspree
+    
+    const btn = formFeedback.querySelector('button');
+    const originalText = btn.textContent;
+    btn.textContent = "Enviando..."; // Feedback visual para o usuário
+
+    const data = new FormData(formFeedback);
+
+    try {
+        const response = await fetch(formFeedback.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            alert('Obrigado! Sua mensagem foi enviada com sucesso.'); // Pode trocar por um modal se quiser
+            formFeedback.reset(); // LIMPA O FORMULÁRIO após o envio
+        } else {
+            alert('Ops! Ocorreu um erro ao enviar. Tente novamente.');
+        }
+    } catch (error) {
+        alert('Erro de conexão. Verifique sua internet.');
+    } finally {
+        btn.textContent = originalText; // Volta o texto do botão ao normal
+    }
+});
+
+
