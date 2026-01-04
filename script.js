@@ -115,18 +115,26 @@ function fecharModal() {
 formCaptura.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Pegando os dados (que o JS enviará silenciosamente para a Brevo depois)
+    // 1. Pegando os dados
     const nome = document.getElementById('lead-nome').value;
     const email = document.getElementById('lead-email').value;
+    const pet = document.getElementById('lead-pet') ? document.getElementById('lead-pet').value : '';
     
-    // Aqui faremos a chamada da API da Brevo no próximo passo!
-    console.log("Capturado:", nome, email);
+    // Log para teste
+    console.log("Capturado:", nome, email, pet);
     
-    // Redireciona para o WhatsApp após a captura
-    const mensagem = encodeURIComponent(`Olá! Me chamo ${nome}, vim pelo site e quero marcar conhecer o Pet Shop!`);
-    window.open(`https://wa.me/5532988449501?text=${mensagem}`, '_blank');
-    
-    fecharModal();
+    // 2. Monta o link do WhatsApp
+    const mensagem = encodeURIComponent(`Olá! Me chamo ${nome}, vim pelo site e quero agendar para o pet ${pet}!`);
+    const urlWhats = `https://wa.me/5532988449501?text=${mensagem}`;
+
+    // 3. ABRE O WHATSAPP EM NOVA ABA
+    window.open(urlWhats, '_blank');
+
+    // 4. LIMPA O FORMULÁRIO E FECHA O MODAL (Com um pequeno atraso para não bugar)
+    setTimeout(() => {
+        formCaptura.reset(); // Limpa os campos (Isso resolve seu problema!)
+        fecharModal();      // Fecha o modal
+    }, 500); 
 });
 
 // Seleciona todos os botões de agendar do site e vincula ao modal
