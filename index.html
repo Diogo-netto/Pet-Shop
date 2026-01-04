@@ -337,26 +337,28 @@
 
 
     <div id="modal-whatsapp" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center;">
-    <div class="cta-box" style="max-width: 450px; width: 90%; margin: auto; position: relative;">
-        <button onclick="fecharModal()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main);">×</button>
-        <div class="cta-content" style="padding: 20px;">
-            <h2 style="font-size: 1.8rem; margin-bottom: 10px;">🎁 Ganhe 5% de Desconto!</h2>
-            <p style="margin-bottom: 25px; font-size: 0.95rem;">Informe seus dados para liberar o desconto e iniciar seu agendamento no WhatsApp.</p>
+    <div class="cta-box" style="max-width: 400px; width: 90%; margin: auto; position: relative; border-radius: 25px; overflow: hidden;">
+        <button onclick="fecharModal()" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--text-main); z-index: 10;">×</button>
+        
+        <div class="cta-content" style="padding: 20px 25px; background: rgb(30, 223, 72); text-align: center;">
+            <div style="font-size: 35px; margin-bottom: 5px;">🐾</div>
+            <h2 style="font-size: 1.4rem; margin-bottom: 5px; color: var(--text-main); font-family: 'Fredoka';">Queremos conhecer seu Pet!</h2>
+            <p style="margin-bottom: 15px; font-size: 0.85rem; color: #3a3939; line-height: 1.3;">Informe os dados para iniciarmos o atendimento no WhatsApp.</p>
             
             <form id="form-captura-whats" class="tech-form">
-                <div class="input-group">
+                <div class="input-group" style="margin-bottom: 8px;">
                     <input type="text" id="lead-nome" required>
                     <label>Seu Nome</label>
                 </div>
-                <div class="input-group">
+                <div class="input-group" style="margin-bottom: 8px;">
                     <input type="email" id="lead-email" required>
-                    <label>Seu melhor E-mail</label>
+                    <label>Seu E-mail</label>
                 </div>
-                <div class="input-group">
+                <div class="input-group" style="margin-bottom: 15px;">
                     <input type="text" id="lead-pet" required>
                     <label>Nome do Pet</label>
                 </div>
-                <button type="submit" class="btn-glow" style="width: 100%; margin-top: 10px;">Resgatar Desconto e Agendar</button>
+                <button type="submit" class="btn-glow" style="width: 100%; padding: 12px; font-size: 0.9rem;">Falar no WhatsApp</button>
             </form>
         </div>
     </div>
