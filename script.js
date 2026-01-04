@@ -123,8 +123,8 @@ formCaptura.addEventListener('submit', function(e) {
     console.log("Capturado:", nome, email);
     
     // Redireciona para o WhatsApp após a captura
-    const mensagem = encodeURIComponent(`Olá! Me chamo ${nome}, vim pelo site e quero meu desconto de 5% no agendamento!`);
-    window.open(`https://wa.me/55SEUNUMEROAQUI?text=${mensagem}`, '_blank');
+    const mensagem = encodeURIComponent(`Olá! Me chamo ${nome}, vim pelo site e quero marcar conhecer o Pet Shop!`);
+    window.open(`https://wa.me/5532988449501?text=${mensagem}`, '_blank');
     
     fecharModal();
 });
