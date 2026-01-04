@@ -96,6 +96,42 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
 
 
 
+// 5. Lógica do Modal de Captura WhatsApp
+const modal = document.getElementById('modal-whatsapp');
+const formCaptura = document.getElementById('form-captura-whats');
 
+// Função para abrir o modal
+function abrirModal(e) {
+    if(e) e.preventDefault(); // Impede o link de abrir o whats direto
+    modal.style.display = 'flex';
+}
+
+// Função para fechar o modal
+function fecharModal() {
+    modal.style.display = 'none';
+}
+
+// Evento ao enviar o formulário do Modal
+formCaptura.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Pegando os dados (que o JS enviará silenciosamente para a Brevo depois)
+    const nome = document.getElementById('lead-nome').value;
+    const email = document.getElementById('lead-email').value;
+    
+    // Aqui faremos a chamada da API da Brevo no próximo passo!
+    console.log("Capturado:", nome, email);
+    
+    // Redireciona para o WhatsApp após a captura
+    const mensagem = encodeURIComponent(`Olá! Me chamo ${nome}, vim pelo site e quero meu desconto de 5% no agendamento!`);
+    window.open(`https://wa.me/55SEUNUMEROAQUI?text=${mensagem}`, '_blank');
+    
+    fecharModal();
+});
+
+// Seleciona todos os botões de agendar do site e vincula ao modal
+document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary').forEach(botao => {
+    botao.addEventListener('click', abrirModal);
+});
 
 
