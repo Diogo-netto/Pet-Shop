@@ -9,6 +9,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
+
 // 2. Typewriter Effect (Efeito de Digitação no Hero)
 const textElement = document.querySelector('.typewriter');
 const words = textElement.getAttribute('data-text').split(',');
@@ -199,5 +200,7 @@ if (feedbackForm) {
         }
     });
 }
+
+
 
 
