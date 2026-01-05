@@ -1,4 +1,4 @@
-// 1. Sticky Header - Muda o fundo ao rolar
+
 const header = document.getElementById('header');
 
 window.addEventListener('scroll', () => {
@@ -149,6 +149,12 @@ document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary').forEach(bo
 
 
 const feedbackForm = document.getElementById('form-contato');
+
+const CONFIG = {
+    API_KEY: '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',
+    LIST_ID: 4
+};
+
 
 if (feedbackForm) {
     feedbackForm.addEventListener('submit', async function(e) {
