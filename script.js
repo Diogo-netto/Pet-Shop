@@ -146,6 +146,8 @@ document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary').forEach(bo
 
 
 
+
+
 const feedbackForm = document.getElementById('form-contato');
 
 if (feedbackForm) {
@@ -154,59 +156,47 @@ if (feedbackForm) {
 
         const btn = feedbackForm.querySelector('button');
         const originalText = btn.textContent;
-        
         btn.textContent = "Enviando...";
         btn.disabled = true;
 
-        // Captura dos valores
-        const emailValue = document.getElementById('email').value.trim();
-        const nomeValue = document.getElementById('nome').value.trim();
-        const petValue = document.getElementById('nome-pet').value.trim();
-        const mensagemValue = document.getElementById('mensagem').value.trim();
-
-        const corpoDados = {
-            email: emailValue,
-            attributes: {
-                "NOME": nomeValue,      
-                "PET": petValue,
-                "MENSAGEM": mensagemValue
-            },
-            listIds: [4],
-            updateEnabled: true 
-        };
-
-        // --- VALIDAÇÃO DA CONFIGURAÇÃO ---
-        // Verifica se o objeto CONFIG (que vem do secrets.js) existe
+        // Verifica se o CONFIG (do arquivo secrets.js) foi carregado
         if (typeof CONFIG === 'undefined') {
-            console.error("ERRO: O arquivo secrets.js não foi carregado ou o objeto CONFIG não existe.");
-            alert("Erro interno: Configuração não carregada.");
+            alert("Erro interno: Configuração não carregada. Verifique o secrets.js");
             btn.textContent = originalText;
             btn.disabled = false;
             return;
         }
+
+        const corpoDados = {
+            email: document.getElementById('email').value.trim(),
+            attributes: {
+                "NOME": document.getElementById('nome').value.trim(),      
+                "PET": document.getElementById('nome-pet').value.trim(),
+                "MENSAGEM": document.getElementById('mensagem').value.trim()
+            },
+            listIds: [CONFIG.LIST_ID],
+            updateEnabled: true 
+        };
 
         try {
             const response = await fetch('https://api.brevo.com/v3/contacts', {
                 method: 'POST',
                 headers: {
                    'accept': 'application/json',
-                   'api-key': CONFIG.API_KEY, // Usa a chave do secrets.js
+                   'api-key': CONFIG.API_KEY, 
                    'content-type': 'application/json'
                 },
                 body: JSON.stringify(corpoDados)
             });
 
-            if (response.ok || response.status === 201 || response.status === 204) {
+            if (response.ok) {
                 alert('🐶 Au-migo, feedback enviado com sucesso!');
                 feedbackForm.reset(); 
             } else {
-                const erroData = await response.json();
-                console.log('Detalhes do erro Brevo:', erroData);
-                alert('Erro na Brevo: ' + (erroData.message || 'Verifique os dados.'));
+                alert('Erro ao enviar para a Brevo.');
             }
         } catch (error) {
-            console.error('Erro de conexão:', error);
-            alert('Falha na rede. Verifique sua conexão.');
+            alert('Falha na rede.');
         } finally {
             btn.textContent = originalText;
             btn.disabled = false;
