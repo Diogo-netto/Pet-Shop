@@ -146,8 +146,6 @@ document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary').forEach(bo
 
 
 
-
-
 const feedbackForm = document.getElementById('form-contato');
 
 if (feedbackForm) {
@@ -177,29 +175,22 @@ if (feedbackForm) {
             updateEnabled: true 
         };
 
-        // --- ÁREA DE TESTE (DEBUG) ---
-        console.log("=== INICIANDO TENTATIVA DE ENVIO ===");
-        
-        // 1. Verifica se o CONFIG existe
+        // --- VALIDAÇÃO DA CONFIGURAÇÃO ---
+        // Verifica se o objeto CONFIG (que vem do secrets.js) existe
         if (typeof CONFIG === 'undefined') {
-            console.error("ERRO CRÍTICO: O objeto 'CONFIG' não foi encontrado. Verifique se o script 'config.js' está importado no HTML ANTES deste script principal.");
+            console.error("ERRO: O arquivo secrets.js não foi carregado ou o objeto CONFIG não existe.");
             alert("Erro interno: Configuração não carregada.");
             btn.textContent = originalText;
             btn.disabled = false;
-            return; // Para tudo aqui se não tiver config
+            return;
         }
-
-        // 2. Mostra a chave no console (só para você ver se ela está chegando)
-        console.log("A chave que o código leu é:", CONFIG.API_KEY);
-        console.log("O corpo dos dados é:", corpoDados);
-        // -----------------------------
 
         try {
             const response = await fetch('https://api.brevo.com/v3/contacts', {
                 method: 'POST',
                 headers: {
                    'accept': 'application/json',
-                   'api-key': CONFIG.API_KEY, 
+                   'api-key': CONFIG.API_KEY, // Usa a chave do secrets.js
                    'content-type': 'application/json'
                 },
                 body: JSON.stringify(corpoDados)
