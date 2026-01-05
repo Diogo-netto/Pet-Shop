@@ -147,6 +147,7 @@ document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary').forEach(bo
 
 
 
+
 const feedbackForm = document.getElementById('form-contato');
 
 if (feedbackForm) {
@@ -172,33 +173,33 @@ if (feedbackForm) {
                 "PET": petValue,
                 "MENSAGEM": mensagemValue
             },
-            listIds: [4], // O ID da sua lista que vimos na Brevo
+            listIds: [4],
             updateEnabled: true 
         };
 
-        // --- ÁREA DE SEGURANÇA (Ajustada para Vercel) ---
+        // --- ÁREA DE TESTE (DEBUG) ---
+        console.log("=== INICIANDO TENTATIVA DE ENVIO ===");
         
-        // Tenta pegar a chave da Vercel primeiro. Se não achar, tenta o CONFIG local.
-        const MINHA_CHAVE = (typeof process !== 'undefined' && process.env.BREVO_API_KEY) 
-            ? process.env.BREVO_API_KEY 
-            : (typeof CONFIG !== 'undefined' ? CONFIG.API_KEY : null);
-
-        // Se não encontrar a chave em lugar nenhum, avisa o erro
-        if (!MINHA_CHAVE) {
-            console.error("ERRO: Nenhuma chave API encontrada.");
+        // 1. Verifica se o CONFIG existe
+        if (typeof CONFIG === 'undefined') {
+            console.error("ERRO CRÍTICO: O objeto 'CONFIG' não foi encontrado. Verifique se o script 'config.js' está importado no HTML ANTES deste script principal.");
             alert("Erro interno: Configuração não carregada.");
             btn.textContent = originalText;
             btn.disabled = false;
-            return;
+            return; // Para tudo aqui se não tiver config
         }
-        // -----------------------------------------------
+
+        // 2. Mostra a chave no console (só para você ver se ela está chegando)
+        console.log("A chave que o código leu é:", CONFIG.API_KEY);
+        console.log("O corpo dos dados é:", corpoDados);
+        // -----------------------------
 
         try {
             const response = await fetch('https://api.brevo.com/v3/contacts', {
                 method: 'POST',
                 headers: {
                    'accept': 'application/json',
-                   'api-key': MINHA_CHAVE, // Usa a chave protegida
+                   'api-key': CONFIG.API_KEY, 
                    'content-type': 'application/json'
                 },
                 body: JSON.stringify(corpoDados)
