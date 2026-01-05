@@ -147,57 +147,78 @@ document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary').forEach(bo
 
 
 
-// Captura o formulário pelo ID correto
+
 const feedbackForm = document.getElementById('form-contato');
 
 if (feedbackForm) {
     feedbackForm.addEventListener('submit', async function(e) {
-        e.preventDefault(); // Impede o redirecionamento
-        
+        e.preventDefault();
+
         const btn = feedbackForm.querySelector('button');
         const originalText = btn.textContent;
         
-        // Feedback visual
         btn.textContent = "Enviando...";
         btn.disabled = true;
 
-        const data = new FormData(feedbackForm);
+        // Captura dos valores
+        const emailValue = document.getElementById('email').value.trim();
+        const nomeValue = document.getElementById('nome').value.trim();
+        const petValue = document.getElementById('nome-pet').value.trim();
+        const mensagemValue = document.getElementById('mensagem').value.trim();
+
+        const corpoDados = {
+            email: emailValue,
+            attributes: {
+                "NOME": nomeValue,      
+                "PET": petValue,
+                "MENSAGEM": mensagemValue
+            },
+            listIds: [4],
+            updateEnabled: true 
+        };
+
+        // --- ÁREA DE TESTE (DEBUG) ---
+        console.log("=== INICIANDO TENTATIVA DE ENVIO ===");
+        
+        // 1. Verifica se o CONFIG existe
+        if (typeof CONFIG === 'undefined') {
+            console.error("ERRO CRÍTICO: O objeto 'CONFIG' não foi encontrado. Verifique se o script 'config.js' está importado no HTML ANTES deste script principal.");
+            alert("Erro interno: Configuração não carregada.");
+            btn.textContent = originalText;
+            btn.disabled = false;
+            return; // Para tudo aqui se não tiver config
+        }
+
+        // 2. Mostra a chave no console (só para você ver se ela está chegando)
+        console.log("A chave que o código leu é:", CONFIG.API_KEY);
+        console.log("O corpo dos dados é:", corpoDados);
+        // -----------------------------
 
         try {
-            const response = await fetch(feedbackForm.action, {
+            const response = await fetch('https://api.brevo.com/v3/contacts', {
                 method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
+                headers: {
+                   'accept': 'application/json',
+                   'api-key': CONFIG.API_KEY, 
+                   'content-type': 'application/json'
+                },
+                body: JSON.stringify(corpoDados)
             });
 
-            if (response.ok) {
-                // 1. Limpa o formulário
+            if (response.ok || response.status === 201 || response.status === 204) {
+                alert('🐶 Au-migo, feedback enviado com sucesso!');
                 feedbackForm.reset(); 
-                
-                // 2. Mostra o balão de sucesso
-                const toast = document.getElementById('success-toast');
-                toast.style.display = 'block';
-                
-                // 3. Faz o balão sumir sozinho após 4 segundos
-                setTimeout(() => {
-                    toast.style.animation = 'popIn 0.4s reverse forwards'; // Animação saindo
-                    setTimeout(() => {
-                        toast.style.display = 'none';
-                        toast.style.animation = 'popIn 0.4s forwards'; // Reseta a animação para a próxima vez
-                    }, 400);
-                }, 4000);
-
             } else {
-                throw new Error("Erro ao enviar o formulário");
+                const erroData = await response.json();
+                console.log('Detalhes do erro Brevo:', erroData);
+                alert('Erro na Brevo: ' + (erroData.message || 'Verifique os dados.'));
             }
         } catch (error) {
-            console.error(error);
-            alert("Erro ao enviar o formulário");
+            console.error('Erro de conexão:', error);
+            alert('Falha na rede. Verifique sua conexão.');
         } finally {
             btn.textContent = originalText;
             btn.disabled = false;
         }
     });
 }
-
-
