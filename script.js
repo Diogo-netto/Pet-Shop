@@ -156,12 +156,15 @@ if (feedbackForm) {
 
         const btn = feedbackForm.querySelector('button');
         const originalText = btn.textContent;
+        
         btn.textContent = "Enviando...";
         btn.disabled = true;
 
-        // Verifica se o CONFIG (do arquivo secrets.js) foi carregado
+        // --- VALIDAÇÃO ---
+        // Verifica se o CONFIG (do secrets.js) foi carregado
         if (typeof CONFIG === 'undefined') {
-            alert("Erro interno: Configuração não carregada. Verifique o secrets.js");
+            console.error("Erro: O arquivo secrets.js não foi carregado corretamente.");
+            alert("Erro interno: Configuração não carregada.");
             btn.textContent = originalText;
             btn.disabled = false;
             return;
@@ -174,7 +177,7 @@ if (feedbackForm) {
                 "PET": document.getElementById('nome-pet').value.trim(),
                 "MENSAGEM": document.getElementById('mensagem').value.trim()
             },
-            listIds: [CONFIG.LIST_ID],
+            listIds: [CONFIG.LIST_ID], // Puxa o ID 4 da sua foto
             updateEnabled: true 
         };
 
@@ -183,20 +186,23 @@ if (feedbackForm) {
                 method: 'POST',
                 headers: {
                    'accept': 'application/json',
-                   'api-key': CONFIG.API_KEY, 
+                   'api-key': CONFIG.API_KEY, // Puxa a chave da sua foto
                    'content-type': 'application/json'
                 },
                 body: JSON.stringify(corpoDados)
             });
 
-            if (response.ok) {
+            if (response.ok || response.status === 201 || response.status === 204) {
                 alert('🐶 Au-migo, feedback enviado com sucesso!');
                 feedbackForm.reset(); 
             } else {
-                alert('Erro ao enviar para a Brevo.');
+                const erroData = await response.json();
+                console.log('Erro Brevo:', erroData);
+                alert('Erro na Brevo: ' + (erroData.message || 'Verifique os dados.'));
             }
         } catch (error) {
-            alert('Falha na rede.');
+            console.error('Erro de conexão:', error);
+            alert('Falha na rede. Verifique sua conexão.');
         } finally {
             btn.textContent = originalText;
             btn.disabled = false;
