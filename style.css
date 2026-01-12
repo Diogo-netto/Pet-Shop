@@ -494,6 +494,29 @@ footer { background: #1e1e1e; color: white; padding: 30px 0 20px; }
 @keyframes fadeInLinks { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 
+/* Quando o menu está aberto, transforma as barrinhas em X */
+
+/* 1. Gira a primeira barra */
+#mobile-toggle.active .bar:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+/* 2. Some com a barra do meio */
+#mobile-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+/* 3. Gira a terceira barra */
+#mobile-toggle.active .bar:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* IMPORTANTE: Adicione isso na classe .bar que você já tem 
+   para o movimento não ser seco (opcional, se já não tiver) */
+.bar {
+    transition: all 0.3s ease;
+}
+
 /* Fundo escuro do Modal */
 .modal-overlay {
     display: none;

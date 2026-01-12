@@ -1,12 +1,20 @@
-// 1. CONFIGURAÇÃO DO WHATSAPP
+// 1. FORÇAR O SITE A IR PARA O TOPO AO ATUALIZAR (Recarregar)
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
+// 2. CONFIGURAÇÃO DO WHATSAPP
 const WHATSAPP_NUMBER = '5532988449501';
 const MENSAGEM_PADRAO = encodeURIComponent("Olá! Vim pelo site do Cantinho do Pelo e gostaria de agendar um serviço para o meu pet. 🐾");
 
 // --- EFEITOS VISUAIS (Header, Typewriter, Reveal) ---
 const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 50);
-});
+if (header) {
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+}
 
 // Efeito de Escrita (Typewriter) no Título
 const textElement = document.querySelector('.typewriter');
@@ -30,17 +38,28 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 document.querySelectorAll('.hidden-element').forEach(el => observer.observe(el));
 
-// Menu Mobile
+// --- MENU MOBILE (CORRIGIDO PARA FECHAR E TROCAR ICONE) ---
 const mobileToggle = document.getElementById('mobile-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
-if (mobileToggle) {
+
+if (mobileToggle && mobileMenu) {
+    // 1. Abrir e Fechar Menu
     mobileToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
+        mobileMenu.classList.toggle('active'); 
+        mobileToggle.classList.toggle('active'); // Isso aqui ativa o "X" se o CSS estiver certo
+    });
+
+    // 2. Fechar o menu automaticamente ao clicar em qualquer link e resetar o ícone
+    const menuLinks = mobileMenu.querySelectorAll('a'); 
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active'); // Fecha o menu
+            mobileToggle.classList.remove('active'); // Volta o ícone para as barrinhas
+        });
     });
 }
 
 // --- REDIRECIONAMENTO COM MENSAGEM PROGRAMADA ---
-// Seleciona todos os botões de agendamento e o botão rosa do catálogo
 document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary, a[style*="background-color: #F7A9C4"]').forEach(botao => {
     botao.addEventListener('click', (e) => {
         e.preventDefault();
@@ -48,7 +67,7 @@ document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary, a[style*="b
     });
 });
 
-// Formulário de Feedback (Envia os dados direto para o WhatsApp da dona)
+// Formulário de Feedback
 const feedbackForm = document.getElementById('form-contato');
 if (feedbackForm) {
     feedbackForm.addEventListener('submit', (e) => {
