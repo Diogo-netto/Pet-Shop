@@ -67,23 +67,3 @@ document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary, a[style*="b
     });
 });
 
-// Formulário de Feedback
-const feedbackForm = document.getElementById('form-contato');
-if (feedbackForm) {
-    feedbackForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const nome = document.getElementById('nome').value;
-        const pet = document.getElementById('nome-pet').value;
-        const msgCliente = document.getElementById('mensagem').value;
-        
-        const textoPersonalizado = encodeURIComponent(
-            `*Novo Feedback pelo Site*\n\n` +
-            `*Cliente:* ${nome}\n` +
-            `*Pet:* ${pet}\n` +
-            `*Mensagem:* ${msgCliente}`
-        );
-        
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${textoPersonalizado}`, '_blank');
-        feedbackForm.reset();
-    });
-}
