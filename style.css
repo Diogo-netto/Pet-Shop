@@ -18,6 +18,16 @@
     --gradient-main: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
     --gradient-pink: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-light) 100%);
     --orange-primary: #F57C00;
+
+    
+    --pink-primary: #D87093;
+    --pink-light: #FADADD;
+    --pink-bg: #FFF5F7;
+    --pink-button: #F7A9C4;
+    --green-premium: #8DBA9C;
+    --green-border: #03ff57;
+    --text-dark: #2D3436;
+    --text-grey: #636E72;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -256,110 +266,153 @@ p { color: var(--text-light); font-size: 1.1rem; line-height: 1.8; margin-bottom
 .icon-green { background: rgba(190, 227, 203, 0.2); color: var(--green-dark); }
 .icon-pink { background: rgba(247, 169, 196, 0.15); color: var(--pink-primary); }
 
-/* --- Serviços --- */
-.services { padding: 80px 0; background: #fff; }
-.services-wrapper {
+/* --- Seção Geral --- */
+#servicos {
+    padding: 60px 20px;
+    background-color: #fff;
+    font-family: 'Fredoka', sans-serif;
+}
+
+.servicos-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Imagem e Textos Iniciais --- */
+.img-servico-principal {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.texto-intro h3 {
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.texto-intro p {
+    color: var(--text-grey);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* --- CARD DO CATÁLOGO (Onde estava o erro) --- */
+.catalogo-card {
+    background-color: var(--pink-bg);
+    padding: 30px;
+    border-radius: 30px;
+    border: 2px solid var(--pink-light);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    margin: 50px auto;
+}
+
+.catalogo-card h2 {
+    text-align: center;
+    color: var(--pink-primary);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.catalogo-card .subtitulo {
+    text-align: center;
+    color: #9E9E9E;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+/* Cabeçalhos das Categorias (Banho, Tosa, etc) */
+.categoria-header {
+    border-bottom: 2px solid var(--pink-primary);
+    padding-bottom: 8px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.categoria-header strong {
+    font-size: 1.1rem;
+    color: var(--pink-primary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.categoria-header small {
+    display: block;
+    color: #888;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 5px;
+    line-height: 1.3;
+}
+
+/* --- LISTA DE PREÇOS (Correção Mobile) --- */
+.lista-precos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.servico-item {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+    justify-content: space-between; /* Nome na esquerda, preço na direita */
+    align-items: center;           /* Alinhamento vertical perfeito */
+    padding: 12px 5px;
+    border-bottom: 1px solid var(--pink-light);
+    color: #555;
+    font-size: 1rem;
 }
 
-.service-card {
-    width: 350px;
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-    transition: 0.3s;
-    position: relative;
+.servico-item strong {
+    color: var(--pink-primary);
+    white-space: nowrap;          /* NÃO DEIXA O PREÇO QUEBRAR LINHA */
+    margin-left: 15px;
 }
 
-.service-card.featured { transform: scale(1.05); border: 2px solid var(--pink-light); }
-.tag-promo {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--pink-primary);
-    color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-
-.service-img { height: 200px; background-size: cover; background-position: center; }
-.service-info { padding: 30px; }
-.service-info h4 { font-size: 1.4rem; margin-bottom: 10px; }
-.link-arrow {
-    display: inline-block;
-    margin-top: 20px;
-    color: var(--green-dark);
-    text-decoration: none;
+/* Box Verde Premium */
+.box-premium-destaque {
+    margin: 25px 0;
+    padding: 15px;
+    border: 2px solid var(--green-border);
+    border-radius: 10px;
+    color: var(--green-premium);
+    text-align: center;
     font-weight: 600;
-    transition: 0.3s;
-}
-.link-arrow:hover { margin-left: 5px; color: var(--green-primary); }
-
-.catalogo-servicos {
-  max-width: 900px;
-  margin: 0 auto 80px;
-  color: #333;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
-.catalogo-bloco {
-  margin-bottom: 50px;
+/* Aviso de Hora Marcada */
+.aviso-footer {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: var(--pink-primary);
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    font-size: 0.9rem;
 }
 
-.catalogo-bloco h3 {
-  text-align: center;
-  font-size: 1.4rem;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-  font-weight: 700;
+/* Botão Agendar */
+.btn-agendar {
+    display: inline-block;
+    background-color: var(--pink-button);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 15px rgba(247, 169, 196, 0.4);
+    transition: transform 0.2s;
 }
 
-.catalogo-bloco .inclui {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 25px;
-}
-
-.catalogo-bloco ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.catalogo-bloco li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px dotted #bbb;
-  padding: 10px 0;
-  font-size: 0.95rem;
-}
-
-.catalogo-bloco li span:last-child {
-  font-weight: 600;
-  color: var(--green-dark);
-}
-
-.catalogo-bloco .obs {
-  font-size: 0.85rem;
-  color: #777;
-  margin-top: 15px;
-  line-height: 1.5;
-}
-
-.catalogo-bloco .pacote li {
-  font-weight: 700;
-}
-
-.divisor {
-  border-top: 2px dashed #ddd;
-  margin: 50px 0;
+.btn-agendar:hover {
+    transform: translateY(-3px);
 }
 
 /* --- CTA Section (Formulário) --- */
