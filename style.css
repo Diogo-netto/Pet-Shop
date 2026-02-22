@@ -273,221 +273,369 @@ p { color: var(--text-light); font-size: 1.1rem; line-height: 1.8; margin-bottom
     font-family: 'Fredoka', sans-serif;
 }
 
+/* O container principal volta ao normal para alinhar os textos de introdução */
 .servicos-container {
-    max-width: 600px;
+    max-width: 900px; /* Mantemos 900px para o card de preços respirar */
     margin: 0 auto;
 }
 
-/* --- Imagem e Textos Iniciais --- */
+/* --- Imagem do Cachorro no Banho (Corrigido para não explodir) --- */
 .img-servico-principal {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    max-width: 500px; /* Trava a largura da foto independente do container */
+    height: 390px; /* Trava a altura para não empurrar o site pra baixo */
+    object-fit: cover; /* Preenche a caixa sem amassar o cachorro */
+    object-position: center 20%; /* Foca no rosto do cachorro */
+    display: block;
+    margin: 0 auto 30px auto; /* Centraliza a foto perfeitamente */
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+}
+
+/* --- Textos Iniciais ("Banho Relaxante") --- */
+.texto-intro {
+    max-width: 600px; /* Trava o texto para não esticar demais na tela */
+    margin: 0 auto; /* Centraliza o bloco de texto de introdução */
+    text-align: center; /* Centraliza as letras do título e parágrafo */
 }
 
 .texto-intro h3 {
     font-size: 1.6rem;
-    color: var(--text-dark);
+    color: var(--text-dark, #5A3E36);
     margin-bottom: 10px;
     font-weight: 700;
 }
 
 .texto-intro p {
-    color: var(--text-grey);
+    color: var(--text-grey, #7b625a);
     line-height: 1.6;
     font-size: 1.1rem;
     margin-bottom: 30px;
 }
 
-/* --- CARD DO CATÁLOGO (Onde estava o erro) --- */
+/* --- CARD DO CATÁLOGO DE PREÇOS --- */
 .catalogo-card {
-    background-color: var(--pink-bg);
-    padding: 30px;
+    background: linear-gradient(160deg, #e4f0e6 0%, #f6e1e5 100%);
+    padding: 40px;
     border-radius: 30px;
-    border: 2px solid var(--pink-light);
+    border: 4px solid #fff;
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     margin: 50px auto;
+    color: #5A3E36;
+    max-width: 900px; /* O card aproveita toda a largura disponível */
 }
 
 .catalogo-card h2 {
     text-align: center;
-    color: var(--pink-primary);
-    font-size: 2rem;
+    color: #5A3E36;
+    font-size: 2.2rem;
     margin-bottom: 10px;
     font-weight: 700;
 }
 
 .catalogo-card .subtitulo {
     text-align: center;
-    color: #9E9E9E;
-    font-size: 0.9rem;
+    color: #7b625a;
+    font-size: 1rem;
     margin-bottom: 30px;
 }
 
-/* Cabeçalhos das Categorias (Banho, Tosa, etc) */
+/* --- Cabeçalhos das Categorias (Estilo Botão Rosa) --- */
 .categoria-header {
-    border-bottom: 2px solid var(--pink-primary);
-    padding-bottom: 8px;
-    margin-top: 30px;
-    margin-bottom: 15px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 25px;
 }
 
 .categoria-header strong {
-    font-size: 1.1rem;
-    color: var(--pink-primary);
+    display: inline-block;
+    background-color: #d6718d; /* Rosa da fita */
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 40px;
+    border-radius: 30px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    box-shadow: 0 4px 0 #b3566f; /* Efeito 3D */
 }
 
 .categoria-header small {
     display: block;
-    color: #888;
-    font-size: 0.85rem;
-    font-style: italic;
-    margin-top: 5px;
-    line-height: 1.3;
+    color: #5A3E36;
+    font-size: 0.95rem;
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 15px;
+    line-height: 1.4;
+    padding: 0 15px; 
 }
 
-/* --- LISTA DE PREÇOS (Correção Mobile) --- */
+/* --- LISTA DE PREÇOS --- */
 .lista-precos {
     list-style: none;
-    padding: 0;
+    padding: 20px;
     margin: 0;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
 }
 
 .servico-item {
     display: flex;
-    justify-content: space-between; /* Nome na esquerda, preço na direita */
-    align-items: center;           /* Alinhamento vertical perfeito */
-    padding: 12px 5px;
-    border-bottom: 1px solid var(--pink-light);
-    color: #555;
-    font-size: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5px;
+    border-bottom: 2px dashed #d6718d;
+    color: #5A3E36;
+    font-size: 1.1rem;
+    font-weight: 600;
+    gap: 20px;
+}
+
+.servico-item:last-child {
+    border-bottom: none;
+}
+
+.servico-item span {
+    flex: 1;
+    line-height: 1.4;
 }
 
 .servico-item strong {
-    color: var(--pink-primary);
-    white-space: nowrap;          /* NÃO DEIXA O PREÇO QUEBRAR LINHA */
-    margin-left: 15px;
+    color: #5A3E36;
+    white-space: nowrap;
+    text-align: right;
+    font-size: 1.15rem;
 }
 
-/* Box Verde Premium */
+/* Box Verde Premium / Aviso */
 .box-premium-destaque {
     margin: 25px 0;
     padding: 15px;
-    border: 2px solid var(--green-border);
+    border: 2px solid #a3c2b1;
     border-radius: 10px;
-    color: var(--green-premium);
+    color: #4a6b57;
     text-align: center;
     font-weight: 600;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #f0f7f3;
 }
 
 /* Aviso de Hora Marcada */
 .aviso-footer {
     margin-top: 30px;
     padding: 15px;
-    background-color: var(--pink-primary);
+    background-color: #d6718d;
     border-radius: 15px;
     text-align: center;
     color: white;
     font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* Botão Agendar */
 .btn-agendar {
-    display: inline-block;
-    background-color: var(--pink-button);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25D366;
     color: white;
     padding: 18px 40px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1rem;
-    box-shadow: 0 5px 15px rgba(247, 169, 196, 0.4);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
     transition: transform 0.2s;
 }
 
 .btn-agendar:hover {
     transform: translateY(-3px);
 }
+/* --- Ajuste Especial para Telas Pequenas (Celulares) --- */
+@media (max-width: 600px) {
+    .catalogo-card {
+        padding: 20px 15px; /* Reduz o padding geral pra dar mais espaço pro texto */
+    }
+    
+    .lista-precos {
+        padding: 15px 10px; /* Reduz o padding interno do bloco branco */
+    }
 
-/* --- CTA Section (Formulário) --- */
-.cta-section { padding: 100px 0; }
-.cta-box {
-    background: var(--gradient-main);
-    border-radius: 30px;
-    padding: 60px;
+    .servico-item {
+        flex-direction: column; /* Empilha texto e preço */
+        align-items: flex-start; /* Alinha tudo à esquerda */
+        gap: 8px; /* Espaço entre o texto marrom e o preço rosa */
+        padding: 18px 0; /* Dá mais espaço de respiro entre um item e outro */
+    }
+    
+    /* Mágica da Responsividade aqui no 'span' (texto do peso) */
+    .servico-item span {
+        width: 100%; /* Força a ocupar toda a largura */
+        display: block; /* Garante comportamento de bloco */
+        font-size: 1.05rem; /* Ajuste sutil no tamanho da fonte */
+        line-height: 1.5; /* Melhora a leitura se quebrar linha */
+    }
+
+    /* Como consertar a quebra do "(Pelo Curto / Longo)" */
+    /* Vamos forçar um tamanho mínimo para que ele não quebre no meio da barra */
+    .servico-item strong {
+        align-self: flex-start; 
+        color: #d6718d; /* Destaca o preço em rosa no celular */
+        font-size: 1.2rem; /* Aumenta um pouco o preço pra dar destaque */
+        margin-top: 2px;
+        background: #fdf2f5; /* Um fundinho rosinha pro preço ficar parecendo etiqueta */
+        padding: 5px 10px;
+        border-radius: 8px;
+        border: 1px solid #f6e1e5;
+    }
+
+    .categoria-header strong {
+        font-size: 1.05rem;
+        padding: 10px 25px;
+        white-space: normal; /* Permite que o título "BANHO E TOSA" quebre linha se precisar */
+        line-height: 1.3;
+    }
+}
+
+
+
+
+
+
+/* ================================================= */
+/* ESTILOS COMPARTILHADOS (Títulos das novas seções) */
+/* ================================================= */
+.container-secao {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.header-secao {
     text-align: center;
-    color: var(--text-main);
-    position: relative;
-    overflow: hidden;
-}
-.cta-box::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -20%;
-    width: 600px;
-    height: 600px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-}
-.cta-content { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
-.cta-content h2 { color: var(--green-dark); margin-bottom: 10px; }
-.cta-content p { color: var(--text-light); margin-bottom: 50px; }
-
-.tech-form { display: flex; gap: 15px; flex-direction: column; }
-.input-group { position: relative; text-align: left; }
-.input-group input {
-    width: 100%;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.9);
-    font-size: 1rem;
-    outline: none;
-}
-.input-group label {
-    position: absolute;
-    left: 20px;
-    top: 15px;
-    color: #999;
-    font-size: 0.9rem;
-    pointer-events: none;
-    transition: 0.3s;
-}
-.input-group input:focus + label,
-.input-group input:valid + label {
-    top: -25px;
-    left: 0;
-    color: var(--pink-dark);
-    font-size: 0.8rem;
-    font-weight: bold;
+    margin-bottom: 40px;
 }
 
-.btn-glow {
-    padding: 15px;
-    background: var(--pink-primary);
-    color: white;
-    border: none;
-    border-radius: 15px;
+.header-secao h2 {
+    color: #d6718d; /* Rosa principal */
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.header-secao p {
+    color: #7b625a; /* Marrom acinzentado */
     font-size: 1.1rem;
+}
+
+/* ================================================= */
+/* SEÇÃO GALERIA (Grid de fotos)                     */
+/* ================================================= */
+.secao-galeria {
+    background-color: #fdf2f5; /* Fundo rosinha bem claro */
+}
+
+.grid-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsivo automático */
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.item-galeria {
+    border-radius: 20px;
+    overflow: hidden; /* Faz a foto respeitar a borda arredondada */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    aspect-ratio: 1 / 1; /* Força fotos quadradas perfeitas */
+}
+
+.item-galeria:hover {
+    transform: translateY(-5px); /* Efeito de pular ao passar o mouse */
+}
+
+.item-galeria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cobre o quadrado sem distorcer o cachorro */
+    display: block;
+}
+
+.btn-container {
+    text-align: center;
+}
+
+.btn-secundario {
+    display: inline-block;
+    background-color: #fff;
+    color: #d6718d;
+    border: 2px solid #d6718d;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
     font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(247, 169, 196, 0.4);
-    transition: 0.3s;
+    font-size: 1rem;
+    transition: all 0.3s;
 }
-.btn-glow:hover { background: var(--white); color: var(--pink-primary); }
 
-
-.btn-glow:active {
-    transform: scale(0.95); /* O botão diminui levemente */
-    transition: transform 0.1s; /* Acontece bem rápido */
+.btn-secundario:hover {
+    background-color: #d6718d;
+    color: #fff;
 }
+
+/* ================================================= */
+/* SEÇÃO DEPOIMENTOS (Cards)                         */
+/* ================================================= */
+.secao-depoimentos {
+    background: linear-gradient(160deg, #e4f0e6 0%, #fff 100%); /* Fundo verdinho caindo pro branco */
+}
+
+.grid-depoimentos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card-depoimento {
+    background: #fff;
+    padding: 30px;
+    border-radius: 25px;
+    border: 1px solid #e4f0e6;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.estrelas {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.texto-depoimento {
+    color: #5A3E36;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.autor-depoimento {
+    border-top: 1px solid #fdf2f5;
+    padding-top: 15px;
+}
+
+.autor-depoimento strong {
+    display: block;
+    color: #d6718d;
+    font-size: 1.1rem;
+    margin-bottom: 3px;
+}
+
+.autor-depoimento span {
+    color: #7b625a;
+    font-size: 0.85rem;
+}
+
 
 
 
