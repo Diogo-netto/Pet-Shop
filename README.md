@@ -40,7 +40,7 @@ Design limpo e direto
 Estrutura focada em conversão e engajamento
 
 # Clone o repositório git clone
-https://diogo-netto.github.io/Pet-Shop/
+https://diogo-netto.github.io/Banho-e-Tosa/
 
 Navegação simples e intuitiva
 
