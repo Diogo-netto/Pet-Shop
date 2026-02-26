@@ -45,6 +45,7 @@
 
 <!-- Ícone -->
 <link rel="icon" href="img/favicon-16x16.png" type="image/png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <title>CANTINHO DO PELO | Estética Animal Premium</title>
     
@@ -278,26 +279,7 @@
         </div>
     </div>
 
-    <!-- PLANO MENSAL (Mantido do código original) -->
-    <div class="categoria-header">
-        <strong>✔️ PLANO MENSAL</strong>
-    </div>
-
-    <div class="lista-precos">
-        <div class="servico-item">
-            <span>4 Banhos Porte Pequeno</span>
-            <strong>R$ 140,00</strong>
-        </div>
-        <div class="servico-item">
-            <span>3 Banhos + 1 Banho e Tosa Porte Pequeno</span>
-            <strong>R$ 180,00</strong>
-        </div>
-        <div class="servico-item">
-            <span>4 Banhos Porte Médio</span>
-            <strong>R$ 210,00</strong>
-        </div>
-    </div>
-
+    
     <div class="aviso-footer">
         📅 Atenção: Todos os atendimentos exclusivamente com <strong>hora marcada</strong>.
     </div>
@@ -316,6 +298,9 @@
 <!-- ========================================== -->
 <!-- SEÇÃO GALERIA: "NOSSOS AUMIGOS"            -->
 <!-- ========================================== -->
+<!-- ========================================== -->
+<!-- SEÇÃO GALERIA: "NOSSOS AUMIGOS"            -->
+<!-- ========================================== -->
 <section id="galeria" class="secao-galeria">
     <div class="container-secao">
         <div class="header-secao">
@@ -323,38 +308,77 @@
             <p>Conheça as estrelas que já passaram pelo nosso cantinho!</p>
         </div>
         
-        <div class="grid-galeria">
-            <!-- Troque o src pelas fotos reais dos clientes -->
-            <div class="item-galeria">
-                <img src="img/WhatsApp Image 2026-02-13 at .jpeg" alt="Cachorrinho feliz">
+        <!-- O container principal do Swiper. Mantive sua classe grid-galeria e adicionei a classe swiper -->
+        <div class="grid-galeria swiper">
+            <!-- Wrapper obrigatório do Swiper -->
+            <div class="swiper-wrapper">
+                
+                <!-- Troque o src pelas fotos reais dos clientes -->
+                <!-- Cada item agora tem a sua classe item-galeria e a classe obrigatória swiper-slide -->
+
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-25 at 19.50.5.jpeg" alt="Cachorrinho feliz">
+                    <div class="nome-cachorro">Floquinho ❤️</div>
+                </div> 
+
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-25 at 19.50.55.jpeg" alt="Cachorrinho feliz">
+                    <div class="nome-cachorro">Liv ❤️</div>
+                </div> 
+
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-13 at .jpeg" alt="Cachorrinho feliz">
+                    <div class="nome-cachorro">Pandora ❤️</div>
+                </div> 
+                
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-13 at 18.59.01.jpeg" alt="Cachorrinho fofo">
+                    <div class="nome-cachorro">Frodo ❤️</div>
+                </div>
+                
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-13 at 18.59.02.jpeg" alt="Cachorro estiloso">
+                    <div class="nome-cachorro">Luna ❤️</div>
+                </div>
+                
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-13 at 18.59.03.jpeg" alt="Cachorro estiloso">
+                    <div class="nome-cachorro">Joe ❤️</div>
+                </div>
+                
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-13 at 18.59.04.jpeg" alt="Cachorro estiloso">
+                    <div class="nome-cachorro">Luna ❤️</div>
+                </div>
+                
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-13 at 18.59.18.jpeg" alt="Cachorro estiloso">
+                    <div class="nome-cachorro">Locke ❤️</div>
+                </div>
+                
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-13 at 18.59.jpeg" alt="Cachorro estiloso">
+                    <div class="nome-cachorro">Zeca ❤️</div>
+                </div>
+                
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-13 at 18.jpeg" alt="Cachorro estiloso">
+                    <div class="nome-cachorro">Nina ❤️</div>
+                </div>
+                
+                <!-- Adicionei mais uma foto aqui só para completar as 9 do seu print, você tinha repetido a 18.59.03 no seu html anterior -->
+                <div class="item-galeria swiper-slide">
+                    <img src="img/WhatsApp Image 2026-02-21 at 16.14.27.jpeg" alt="Cachorro estiloso">
+                    <div class="nome-cachorro">Pandora ❤️</div>
+                </div>
             </div>
-            <div class="item-galeria">
-                <img src="img/WhatsApp Image 2026-02-13 at 18.59.0.jpeg" alt="Cachorro de banho tomado">
-            </div>
-            <div class="item-galeria">
-                <img src="img/WhatsApp Image 2026-02-13 at 18.59.01.jpeg" alt="Cachorrinho fofo">
-            </div>
-            <div class="item-galeria">
-                <img src="img/WhatsApp Image 2026-02-13 at 18.59.02.jpeg" alt="Cachorro estiloso">
-            </div>
-            <div class="item-galeria">
-                <img src="img/WhatsApp Image 2026-02-13 at 18.59.03.jpeg" alt="Cachorro estiloso">
-            </div>
-            <div class="item-galeria">
-                <img src="img/WhatsApp Image 2026-02-13 at 18.59.04.jpeg" alt="Cachorro estiloso">
-            </div>
-            <div class="item-galeria">
-                <img src="img/WhatsApp Image 2026-02-13 at 18.59.18.jpeg" alt="Cachorro estiloso">
-            </div>
-            <div class="item-galeria">
-                <img src="img/WhatsApp Image 2026-02-13 at 18.59.jpeg" alt="Cachorro estiloso">
-            </div>
-            <div class="item-galeria">
-                <img src="img/WhatsApp Image 2026-02-13 at 18.jpeg" alt="Cachorro estiloso">
-            </div>
-            <div class="item-galeria">
-                <img src="img/WhatsApp Image 2026-02-21 at 16.14.27.jpeg" alt="Cachorro estiloso">
-            </div>
+            
+            <!-- Botões de Navegação do Swiper -->
+            <div class="swiper-button-prev" aria-label="Voltar"></div>
+            <div class="swiper-button-next" aria-label="Avançar"></div>
+            
+            <!-- Paginação do Swiper (bolinhas) -->
+            <div class="swiper-pagination"></div>
         </div>
         
         <div class="btn-container">
@@ -364,6 +388,7 @@
         </div>
     </div>
 </section>
+
 
 <!-- ========================================== -->
 <!-- SEÇÃO DEPOIMENTOS: "MURAL DE CARINHO"      -->
@@ -438,7 +463,7 @@
 
     </footer>
 
-     
+     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
      <script src="script.js"></script>
 </body>
 </html>

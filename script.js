@@ -67,3 +67,60 @@ document.querySelectorAll('a[href*="wa.me"], .btn-nav, .btn-primary, a[style*="b
     });
 });
 
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Verifica se a biblioteca do Swiper foi carregada no HTML
+    if (typeof Swiper === 'undefined') {
+        console.error('A biblioteca Swiper não foi carregada.');
+        return;
+    }
+
+    // Inicializa o Swiper pegando a classe do nosso container
+    const galeriaSwiper = new Swiper('.grid-galeria', {
+        // Ativa o loop infinito (quando chegar na última foto, volta pra primeira suavemente)
+        loop: true,
+        
+        // Espaço entre as fotos (em pixels)
+        spaceBetween: 20,
+
+        // Configuração de Autoplay pedida: muda a cada 3 segundos (3000ms)
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false, // Continua passando sozinho mesmo se o usuário clicar na seta
+            pauseOnMouseEnter: true      // Pausa o carrossel se o mouse estiver em cima da foto
+        },
+
+        // Ativação das setas de voltar/avançar
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // Ativação das bolinhas lá embaixo
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true, // Permite clicar nas bolinhas para pular para a foto
+        },
+
+        // Responsividade: Quantas fotos mostrar dependendo do tamanho da tela
+        breakpoints: {
+            // Telas de celular (a partir de 0px)
+            0: {
+                slidesPerView: 1, // Mostra 1 foto por vez
+            },
+            // Telas de tablet (a partir de 600px)
+            600: {
+                slidesPerView: 2, // Mostra 2 fotos lado a lado
+            },
+            // Telas de computador (a partir de 900px)
+            900: {
+                slidesPerView: 3, // Mostra 3 fotos lado a lado
+            },
+            // Telas muito grandes (a partir de 1200px)
+            1200: {
+                slidesPerView: 4, // Mostra 4 fotos lado a lado
+            }
+        }
+    });
+});
+

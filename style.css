@@ -527,37 +527,76 @@ p { color: var(--text-light); font-size: 1.1rem; line-height: 1.8; margin-bottom
     font-size: 1.1rem;
 }
 
+
+
 /* ================================================= */
-/* SEÇÃO GALERIA (Grid de fotos)                     */
+/* SEÇÃO GALERIA (Carrossel Swiper)                  */
 /* ================================================= */
 .secao-galeria {
     background-color: #fdf2f5; /* Fundo rosinha bem claro */
+    overflow: hidden; /* Evita que o carrossel crie barra de rolagem lateral */
 }
 
+/* O antigo grid agora é o container do carrossel */
 .grid-galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsivo automático */
-    gap: 20px;
-    margin-bottom: 40px;
+    width: 100%;
+    margin-bottom: 50px;
+    padding-bottom: 40px; /* Espaço para as bolinhas da paginação não ficarem em cima das fotos */
 }
 
+/* Cada item/card da galeria */
 .item-galeria {
     border-radius: 20px;
-    overflow: hidden; /* Faz a foto respeitar a borda arredondada */
+    overflow: hidden; /* Faz a foto e o texto respeitarem a borda arredondada */
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     transition: transform 0.3s ease;
-    aspect-ratio: 1 / 1; /* Força fotos quadradas perfeitas */
+    background-color: #fff; /* Fundo branco atrás da imagem e texto */
+    height: auto; /* O Swiper ajusta a altura automaticamente */
 }
 
+/* Efeito de pular ao passar o mouse */
 .item-galeria:hover {
-    transform: translateY(-5px); /* Efeito de pular ao passar o mouse */
+    transform: translateY(-5px); 
 }
 
+/* Força a imagem a ser quadrada e preencher o card */
 .item-galeria img {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1 / 1; /* Força fotos quadradas perfeitas */
     object-fit: cover; /* Cobre o quadrado sem distorcer o cachorro */
     display: block;
+}
+
+/* Área de texto onde fica o nome do cachorro */
+.nome-cachorro {
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #d6718d; /* Rosa escuro para combinar com o botão */
+    font-size: 1rem;
+    border-top: 1px solid #fdf2f5;
+}
+
+/* Personalização das setas de navegação do Swiper */
+.grid-galeria .swiper-button-prev,
+.grid-galeria .swiper-button-next {
+    color: #d6718d; /* Muda a cor da seta para o rosa do seu site */
+    background: rgba(255, 255, 255, 0.8);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.grid-galeria .swiper-button-prev:after,
+.grid-galeria .swiper-button-next:after {
+    font-size: 20px; /* Reduz o tamanho do ícone da seta dentro da bolinha */
+    font-weight: bold;
+}
+
+/* Personalização das bolinhas (paginação) do Swiper */
+.grid-galeria .swiper-pagination-bullet-active {
+    background-color: #d6718d; /* Bolinha ativa na cor rosa do site */
 }
 
 .btn-container {
@@ -581,6 +620,8 @@ p { color: var(--text-light); font-size: 1.1rem; line-height: 1.8; margin-bottom
     background-color: #d6718d;
     color: #fff;
 }
+
+
 
 /* ================================================= */
 /* SEÇÃO DEPOIMENTOS (Cards)                         */
